@@ -382,11 +382,11 @@ from multiprocessing import Process
 
 
 # # -----------------------------
-# # Analysis 9, Same Size Ellipse that is "cut out" shapes are not scaled
+# # Analysis 9, Same Size Ellipse that is "cut out" shapes are scaled
 # # -----------------------------
 
 # # -----------------------------
-# # Generate ellipses (not scaled), with varying overlap (param 0.0 to 0.9)
+# # Generate ellipses, with varying overlap (param 0.0 to 0.9)
 # # -----------------------------
 
 # params = np.linspace(0.0, 0.9, 17)
@@ -444,7 +444,7 @@ from multiprocessing import Process
 # print("\\bottomrule")
 # print("\\end{tabular}")
 # print("\\caption{Translational velocities (T) over time for selected overlaps (every second parameter) for the identical cutout case.}")
-# print("\\label{tab:same_cutout_not_scaled_filtered}")
+# print("\\label{tab:same_cutout_scaled_filtered}")
 # print("\\end{table}")
 
 
@@ -457,7 +457,7 @@ from multiprocessing import Process
 # # # Plot All Scores
 # # # -----------------------------
 
-# help.plot_simulation_scores(results, show=[True, False, False], save = True, title= "Same cutout not scaled")
+# help.plot_simulation_scores(results, show=[True, False, False], save = True, title= "Same cutout scaled")
 
 
 
@@ -469,11 +469,11 @@ from multiprocessing import Process
 
 
 # # -----------------------------
-# # Analysis 10, Same Size Ellipse that is "cut out" shapes are not scaled, inital angle of 30 degrees
+# # Analysis 10, Same Size Ellipse that is "cut out" shapes are scaled, inital angle of 30 degrees
 # # -----------------------------
 
 # # -----------------------------
-# # Generate ellipses (not scaled), with varying overlap (param 0.0 to 0.9)
+# # Generate ellipses, with varying overlap (param 0.0 to 0.9)
 # # -----------------------------
 
 # params = np.linspace(0.0, 0.9, 17)
@@ -503,10 +503,7 @@ from multiprocessing import Process
 # # # Plot All Scores
 # # # -----------------------------
 
-# help.plot_simulation_scores(results, show=[True, True, False], save = True, title= "Same cutout not scaled initial angle")
-
-
-
+# help.plot_simulation_scores(results, show=[True, True, False], save = True, title= "Same cutout scaled initial angle")
 
 
 
@@ -571,11 +568,6 @@ from multiprocessing import Process
 
 
 
-
-
-
-
-
 # # -----------------------------
 # # Analysis 12 Deflected Airflow
 # # -----------------------------
@@ -591,6 +583,8 @@ from multiprocessing import Process
 # # help.plot_shape_deflected_airflow(deflected_airflow_two, save=True, save_path = r"C:\Daten_Lokal\Daten\Ausbildung\Studium\BAgifs\deflected_airflow_two.png")
 
 # shapes = [deflected_airflow_one, deflected_airflow_two]
+# names1 = ["Open_ND", "Spear_ND"]
+# names2 = ["Open_D", "Spear_D"]
 
 # # -----------------------------
 # # Run Simulations and Collect Scores
@@ -602,10 +596,10 @@ from multiprocessing import Process
 # for idx, shape in enumerate(shapes):
 
 #     sim_result = run_simulation(
-#         inp_in=shape, plot_show = False, deflected_airflow = False, max_iteration = 26)
+#         inp_in=shape, plot_show = False, deflected_airflow = False, max_iteration = 101)
     
 #     results.append({
-#         "name": f"{idx:.1f}",
+#         "name": f"{names1[idx]}",
 #         "time": sim_result['time'],
 #         "translational": sim_result['translational'],
 #         "rotational": sim_result['rotational'],
@@ -618,10 +612,10 @@ from multiprocessing import Process
 # for idx, shape in enumerate(shapes):
 
 #     sim_result = run_simulation(
-#         inp_in=shape, plot_show = False, deflected_airflow = True, alpha = 0.2, max_iteration = 26)
+#         inp_in=shape, plot_show = False, deflected_airflow = True, alpha = 0.2, max_iteration = 101)
     
 #     results.append({
-#         "name": f"{idx:.1f}",
+#         "name": f"{names2[idx]}",
 #         "time": sim_result['time'],
 #         "translational": sim_result['translational'],
 #         "rotational": sim_result['rotational'],
@@ -630,7 +624,7 @@ from multiprocessing import Process
 #     })
 
 
-# # Assume results = [Shape1_noDeflected, Shape2_noDeflected, Shape1_Deflected, Shape2_Deflected]
+# # Assume results = [Open_ND, Spear_ND, Open_D, Spear_D]
 # # Get time vector (all the same)
 # time = results[0]['time']
 
@@ -672,15 +666,15 @@ from multiprocessing import Process
 # print("\\end{table}")
 
 
-
-
-
-
 # # -----------------------------
 # # Plot All Scores
 # # -----------------------------
 
-# help.plot_simulation_scores(results, show=[True, False, False], plot_show = True, save= True, title="Deflected Airflow")
+# help.plot_simulation_scores(results, show=[True, False, False], plot_show = True, save= True, title="Deflected Airflow longer")
+
+
+
+
 
 
 
@@ -697,12 +691,230 @@ from multiprocessing import Process
 # -----------------------------
 
 
-# help.plot_shape(wrapperhelp.generate_ellipse_above_diff(param=0.5, a=9, b=6, c=5, d=2, num_points=50, gap=0)
-# )
+help.plot_shape(wrapperhelp.generate_ellipse_above_diff(param=0.5, a=9, b=6, c=5, d=2, num_points=50, gap=1.5)
+)
 # help.plot_shape(wrapperhelp.generate_ellipse_above_diff(param=0.5, a=9, b=6, c=9, d=6, num_points=50, gap=0)
 # )
 # help.plot_shape(wrapperhelp.generate_ellipse_above_diff(param=0.5, a=9, b=6, c=13, d=10, num_points=50, gap=0)
 # )
+
+
+
+
+# # # -----------------------------
+# # # Plot All Scores
+# # # -----------------------------
+
+# help.plot_simulation_scores(results, show=[True, False, False], save = True, title= "Same cutout not scaled")
+
+
+
+
+
+
+
+
+
+
+
+
+# # -----------------------------
+# # Analysis 14 Deflected airflow with more complex shapes and an initial angle
+# # -----------------------------
+
+# # -----------------------------
+# # Generate the two shapes
+# # -----------------------------
+
+# params = [0.0, 0.7]
+# shapes = [wrapperhelp.generate_ellipse_above_diff(param=p, a=5, b=4, c=5, d=4, num_points=20, gap=0) for p in params]
+# names1 = ["Ellipse_ND", "Cutout_ND"]
+# names2 = ["Ellipse_D", "Cutout_D"]
+
+# # -----------------------------
+# # Run Simulations and Collect Scores
+# # -----------------------------
+# results = []
+
+# # Run the basic simulation
+
+# for idx, shape in enumerate(shapes):
+
+#     sim_result = run_simulation(
+#         inp_in=shape, initial_angle_in=30, plot_show = False, deflected_airflow = False, max_iteration = 101)
+    
+#     results.append({
+#         "name": f"{names1[idx]}",
+#         "time": sim_result['time'],
+#         "translational": sim_result['translational'],
+#         "rotational": sim_result['rotational'],
+#         "height": sim_result['height'],
+#         "aero_force_total": sim_result['aero_force_total']
+#     })
+
+# # Run the simulation with the deflected airflow forces
+
+# for idx, shape in enumerate(shapes):
+
+#     sim_result = run_simulation(
+#         inp_in=shape, initial_angle_in=30, plot_show = False, deflected_airflow = True, alpha = 0.2, max_iteration = 101)
+    
+#     results.append({
+#         "name": f"{names2[idx]}",
+#         "time": sim_result['time'],
+#         "translational": sim_result['translational'],
+#         "rotational": sim_result['rotational'],
+#         "height": sim_result['height'],
+#         "aero_force_total": sim_result['aero_force_total']
+#     })
+
+
+# # Assume results = ["Ellipse_ND", "Cutout_ND", "Ellipse_D", "Cutout_D"]
+# # Get time vector (all the same)
+# time = results[0]['time']
+
+# # Start LaTeX table
+# print("\\begin{table}[H]")
+# print("\\centering")
+# print("\\scriptsize")  # Make the text slightly smaller
+# print("\\setlength{\\tabcolsep}{3pt}")  # Reduce only horizontal column spacing
+# print("\\begin{tabular}{c|cccc|cccc|c|cccc}")
+# print("\\toprule")
+# print("Time (s) & \\multicolumn{4}{c|}{Transl. Velocity (m/s)} & \\multicolumn{4}{c|}{Height Loss (m)} & Aeroforce (N) & \\multicolumn{4}{c}{Aero Force y (N)}\\\\")
+# print(" & Spear ND & Open ND & Spear D & Open D & Spear ND & Open ND & Spear D & Open D & All x-comp. & Spear ND & Open ND & Spear D & Open D\\\\")
+# print("\\midrule")
+
+# # Fill each row
+# for i in range(26):
+#     t = time[26]
+#     translational_scores = [res['translational'][i] for res in results]
+#     height_scores = [res['height'][i] for res in results]
+#     aero_forces = [res['aero_force_total'][i] for res in results]  # Keep full vectors [x,y]
+
+#     line = f"{t:.2f}"
+#     for score in translational_scores:
+#         line += f" & {score:.2f}"
+#     for score in height_scores:
+#         line += f" & {score:.2f}"
+#     # Print x-component once (same for all, usually 0)
+#     line += f" & {aero_forces[0][0]:.2f}"
+#     # Print all y-components separately
+#     for force in aero_forces:
+#         line += f" & {force[1]:.2f}"
+#     line += "\\\\"
+#     print(line)
+
+# print("\\bottomrule")
+# print("\\end{tabular}")
+# print("\\caption{Full translational velocities, heights, and aerodynamic force components over time for both shapes with and without deflected airflow.}")
+# print("\\label{tab:deflected_airflow_full_with_aero_components}")
+# print("\\end{table}")
+
+
+# # -----------------------------
+# # Plot All Scores
+# # -----------------------------
+
+# help.plot_simulation_scores(results, show=[True, False, False], plot_show = True, save= True, title="Deflected Airflow with initial angle")
+
+
+
+
+
+
+
+
+
+
+
+
+# # -----------------------------
+# # Analysis 15, Same Size Ellipse that is "cut out" shapes are not scaled
+# # -----------------------------
+
+# # -----------------------------
+# # Generate ellipses (not scaled), with varying overlap (param 0.0 to 0.9)
+# # -----------------------------
+
+# params = np.linspace(0.0, 0.9, 17)
+# shapes = [wrapperhelp.generate_ellipse_above_diff(param=p, a=5, b=4, c=5, d=4, num_points=50, gap=0) for p in params]
+
+# # # -----------------------------
+# # # Run Simulations and Collect Scores
+# # # -----------------------------
+# results = []
+
+# for idx, (shape, param) in enumerate(zip(shapes, params)):
+#     sim_result = run_simulation(
+#         inp_in=shape, initial_velocity = np.array([0.0, -15.0]), plot_show = False, max_iteration = 401
+#     )
+    
+#     results.append({
+#         "name": f"Overlap {param:.1f}",
+#         "time": sim_result['time'],
+#         "translational": sim_result['translational'],
+#         "rotational": sim_result['rotational'],
+#         "height": sim_result['height']
+#     })
+
+
+
+# # # -----------------------------
+# # # Plot All Scores
+# # # -----------------------------
+
+# help.plot_simulation_scores(results, show=[True, True, False], save = True, title= "Same cutout not scaled")
+
+
+
+
+
+
+
+
+
+# # -----------------------------
+# # Analysis 16, Same Size Ellipse that is "cut out" shapes are not scaled, inital angle of 30 degrees
+# # -----------------------------
+
+# # -----------------------------
+# # Generate ellipses (not scaled), with varying overlap (param 0.0 to 0.9)
+# # -----------------------------
+
+# params = np.linspace(0.0, 0.9, 17)
+# shapes = [wrapperhelp.generate_ellipse_above_diff(param=p, a=5, b=4, c=5, d=4, num_points=50, gap=0) for p in params]
+
+# # # -----------------------------
+# # # Run Simulations and Collect Scores
+# # # -----------------------------
+# results = []
+
+# for idx, (shape, param) in enumerate(zip(shapes, params)):
+#     sim_result = run_simulation(
+#         inp_in=shape, initial_velocity = np.array([0.0, -15.0]), initial_angle_in = 30, plot_show = False, max_iteration = 401
+#     )
+    
+#     results.append({
+#         "name": f"Overlap {param:.1f}",
+#         "time": sim_result['time'],
+#         "translational": sim_result['translational'],
+#         "rotational": sim_result['rotational'],
+#         "height": sim_result['height']
+#     })
+
+
+
+# # # -----------------------------
+# # # Plot All Scores
+# # # -----------------------------
+
+# help.plot_simulation_scores(results, show=[True, True, False], save = True, title= "Same cutout not scaled initial angle")
+
+
+
+
+
+
 
 
 
@@ -769,6 +981,6 @@ if __name__ == "__main__":
 
     p1 = Process(target=run_one)
     p2 = Process(target=run_two)
-    # p1.start()
+    p1.start()
     # p2.start()
 

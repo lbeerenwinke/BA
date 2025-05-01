@@ -110,17 +110,17 @@ def generate_ellipse_above_diff(param, a=5, b=2, c=5, d=2, num_points=100, gap=2
     result = poly_a.difference(ellipse_b_shifted)
 
 
-    # No segment conversion here — we work directly with points
+    # # No segment conversion here — we work directly with points
     ellipse_a_pts = ellipse_a  # Already raw points
     ellipse_b_pts = np.array(ellipse_b_shifted.exterior.coords[:-1])  # Drop duplicate closing point
 
-#     # Visualize both before the difference operation
-#     help.plot_shape_multi_from_points(
-#     ellipse_a_pts,
-#     ellipse_b_pts,
-#     labels=[f'A (Top Ellipse)', f'B (Shifted Bottom Ellipse)'],
-#     title="Original and Shifted Ellipses"
-# )
+    # Visualize both before the difference operation
+    help.plot_shape_multi_from_points(
+    ellipse_a_pts,
+    ellipse_b_pts,
+    labels=[f'A (Top Ellipse)', f'B (Shifted Bottom Ellipse)'],
+    title="Original and Shifted Ellipses"
+)
 
     if result.is_empty:
         return compute_segments_from_points(np.empty((0, 2)))

@@ -324,12 +324,16 @@ def run_simulation(inp_in, com_shift_in=np.array([0, -10]), initial_angle_in=0, 
         # Calculate forces and torques
         for i, (segment, pt) in enumerate(zip(currsegs, currpoints)):
             
+            segment = np.array(segment)
+            pt = np.array(pt)
+
             # compute forces
             force_gravity = np.array(help.compute_fg(segment, gravity_acceleration, mass_scale))
             
             # If the airflow is not blocked by any other segment, compute the aerodynamic force and forward the deflected airflow to the other segments, if they themselves are not blocked (this functionality is inside the compute_deflected_airflow_force function)
             if not help.is_segment_blocked(segment, pt, currv, currpoints, i):
                 force_aero = np.array(help.compute_force(segment, pt, currv, curr_ang_v, com))
+
                 if deflected_airflow:
                     deflected_force_aero = help.compute_deflected_airflow_force(
                                                     alpha=alpha,
@@ -447,6 +451,9 @@ def run_simulation(inp_in, com_shift_in=np.array([0, -10]), initial_angle_in=0, 
 
         # Update the midpoints where the arrows should be added for the animation
         for i, (segment, pt) in enumerate(zip(currsegs, currpoints)):
+            
+            segment = np.array(segment)
+            pt = np.array(pt)
 
             # Midpoint of the segment (where we will place the arrows)
             midpoint = (pt[0] + segment[0] / 2, pt[1] + segment[1] / 2)

@@ -160,7 +160,7 @@ def is_segment_blocked(segment, startpoint, v_p, all_points, segment_index, ray_
     """Check if a segment is blocked from airflow by others."""
     # Compute the midpoint of the segment
     midpoint = (startpoint[0] + segment[0] / 2, startpoint[1] + segment[1] / 2)
-    
+
     v_p_norm = np.linalg.norm(v_p)
     if(v_p_norm == 0):
         return True
@@ -202,7 +202,6 @@ def compute_deflected_airflow_force(alpha, v_object, ang_vel, segment, pt,
     # Total velocity at the midpoint (linear + tangential)
     v_p = np.array((v_object[0] + tangential_velocity[0], v_object[1] + tangential_velocity[1]))
 
-
     # Compute segment normal (CCW)
     norm = np.linalg.norm(segment)
     if norm == 0:
@@ -221,6 +220,9 @@ def compute_deflected_airflow_force(alpha, v_object, ang_vel, segment, pt,
         if j == segment_index:
             continue  # Skip self
 
+        seg_target = np.array(seg_target)
+        pt_target = np.array(pt_target)
+
         # Compute midpoint of target segment
         target_mid = np.array((pt_target[0] + seg_target[0] / 2, pt_target[1] + seg_target[1] / 2))
 
@@ -229,6 +231,7 @@ def compute_deflected_airflow_force(alpha, v_object, ang_vel, segment, pt,
             continue
 
         # Check if target segment lies in general direction of deflected airflow
+        
         if not is_segment_blocked(segment=segment, startpoint=pt, v_p=deflected_v_airflow, 
                                 all_points=[pt_target, pt_target + seg_target], segment_index=3): # Index three to avoid it, anything except 0 works
             continue  # Not in direction
@@ -243,7 +246,7 @@ def compute_deflected_airflow_force(alpha, v_object, ang_vel, segment, pt,
             compute_force(seg_target, pt_target, deflected_v_p, ang_vel, com)
         )
         total_force += force
-            
+
     return total_force
 
 
@@ -280,8 +283,8 @@ def compute_moment_of_inertia_from_points(points, com):
         distance_squared = dx**2 + dy**2
 
         # Moment of inertia for the segment
-        I_center = (1/12) * length**3  # About segment's center, length = mass
-        I_segment_com = I_center + mass_segment * distance_squared  # Parallel axis theore
+        I_center = (1/12) * 0.1 * length**3  # About segment's center, length = mass
+        I_segment_com = I_center + mass_segment * distance_squared  # Parallel axis theorem
 
         # Add to total moment of inertia
         I_total += I_segment_com
@@ -445,7 +448,7 @@ def plot_shape_deflected_airflow(segments, title="Shape", save=False, save_path=
 
 
 
-def plot_shape(segments, title="Shape",  plot_show = True, save=False, save_path="C:\Daten_Lokal\Daten\Ausbildung\Studium\BAgifs\plotshape.png"):
+def plot_shape(segments, title="Shape",  plot_show = True, save=True, save_path="C:\Daten_Lokal\Daten\Ausbildung\Studium\BAgifs\plotshape.png"):
     """Plots a list of segments as a 2D shape."""
     
     points = initialize_points(0, 0, segments)
@@ -478,7 +481,7 @@ def plot_shape(segments, title="Shape",  plot_show = True, save=False, save_path
 
 
 
-def plot_shape_multi_from_points(*point_sets, labels=None, title="Multiple Shapes (Points)", plot_show = True, save=False, save_path="C:\Daten_Lokal\Daten\Ausbildung\Studium\BAgifs\plotshapemultiplefrompoints.png"):
+def plot_shape_multi_from_points(*point_sets, labels=None, title="Multiple Shapes (Points)", plot_show = True, save=True, save_path="C:\Daten_Lokal\Daten\Ausbildung\Studium\BAgifs\plotshapemultiplefrompoints.png"):
     """
     Plots multiple shapes given as lists of 2D points (not segments).
     
