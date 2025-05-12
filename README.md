@@ -66,7 +66,11 @@ python BAwrapper.py
 
 ### Run Analyses
 
-Uncomment the relevant analysis block(s) in `BAwrapper.py` to reproduce figures and tables from the thesis.
+Uncomment the relevant analysis block(s) in `BAwrapper.py` to reproduce figures and tables from the thesis. If needed, comment the bottom of `BAwrapper.py` used for custom simulations, then:
+
+```bash
+python BAwrapper.py
+```
 
 ---
 
