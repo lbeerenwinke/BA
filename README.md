@@ -32,7 +32,7 @@ This repository contains the full simulation framework and analysis scripts from
 | `initial_ang_velocity` | Initial angular velocity (scalar). |
 | `is_manual_mass`       | If `True`, adds a custom manual point mass to the body. |
 | `manual_mass`          | Value of the manually added point mass. |
-| `mass_scale`           | Scaling factor for mass contribution from each segment. A real paraglider is quite light, around 4kg |
+| `mass_scale`           | Scaling factor for mass contribution from each segment. A real paraglider is quite light, around 4kg. |
 | `flags`                | A list controlling visualization options: <br> `[manual gravity, _, segment gravity, normal vectors]` <br> Example: `[True, True, True, False]`. |
 | `deflected_airflow`    | If `True`, enables airflow deflection modeling between segments. |
 | `num_discretization`   | Number of subdivisions per segment for better accuracy. |
