@@ -74,7 +74,7 @@ Uncomment the relevant analysis block(s) in `BAwrapper.py` to reproduce figures 
 
 This thesis was conducted under the supervision of:
 
-- **Prof. Dr. Olga Olga Sorkine-Hornung**
+- **Prof. Dr. Olga Sorkine-Hornung**
 - **Marcel Padilla**
 - **Aviv Segall**
 
